@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ca" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sucursals</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-3">
+    <h2>Llistat de Sucursals</h2>
+    <div class="mb-3">
+        <a href="#" th:href="@{/sucursal/add}" class="btn btn-primary">Afegir Sucursal</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Pais</th>
+            <th>Tipus</th>
+            <th>Accions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sucursal : ${sucursals}">
+            <td th:text="${sucursal.pk_SucursalID}"></td>
+            <td th:text="${sucursal.nomSucursal}"></td>
+            <td th:text="${sucursal.paisSucursal}"></td>
+            <td th:text="${sucursal.TipusSucursal}"></td>
+            <td>
+                <a th:href="@{/sucursal/edit/{id}(id=${sucursal.pk_SucursalID})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/sucursal/delete/{id}(id=${sucursal.pk_SucursalID})}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Estàs segur que vols eliminar aquesta sucursal?')">Eliminar</a>
+            </td>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
